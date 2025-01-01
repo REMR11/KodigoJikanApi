@@ -2,8 +2,7 @@ package org.kodigo.JikanAPIREST.entities;
 
 import jakarta.persistence.*;
 import org.kodigo.JikanAPIREST.DTO.ImagesDTO;
-import org.kodigo.JikanAPIREST.DTO.JpgDTO;
-import org.kodigo.JikanAPIREST.DTO.WebpDTO;
+
 
 @Entity
 @Table(name = "images")
@@ -12,11 +11,11 @@ public class Images {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne(cascade = CascadeType.ALL) // o @ManyToOne dependiendo de tu modelo
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "jpg_id", referencedColumnName = "id")
     private Jpg jpg;
 
-    @OneToOne(cascade = CascadeType.ALL) // o @ManyToOne dependiendo de tu modelo
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "webp_id", referencedColumnName = "id")
     private Webp webp;
 
@@ -25,9 +24,14 @@ public class Images {
 
     // Constructor que recibe un DTO
     public Images(ImagesDTO imagesDTO) {
-        this.jpg = new Jpg(imagesDTO.jpg());
-        this.webp = new Webp(imagesDTO.webp());
+        if (imagesDTO.jpg() != null) {
+            this.jpg = new Jpg(imagesDTO.jpg());
+        }
+        if (imagesDTO.webp() != null) {
+            this.webp = new Webp(imagesDTO.webp());
+        }
     }
+
 
     public long getId() {
         return id;

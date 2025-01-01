@@ -1,10 +1,10 @@
 package org.kodigo.JikanAPIREST.entities;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.kodigo.JikanAPIREST.DTO.TitleDTO;
 
+@Entity
+@Table(name="title")
 public class Title {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

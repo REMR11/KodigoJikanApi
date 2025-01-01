@@ -13,7 +13,7 @@ public class Webp {
     private String imageUrl;
     private String smallImageUrl;
     private String largeImageUrl;
-
+    public Webp() {}
     public Webp(WebpDTO webpDTO) {
         this.imageUrl = webpDTO.imageUrl();
         this.smallImageUrl = webpDTO.smallImageUrl();

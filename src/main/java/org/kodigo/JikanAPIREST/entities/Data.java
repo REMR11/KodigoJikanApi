@@ -14,7 +14,6 @@ public class Data {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String url;
-    private Images images;
     private String title;
     private String titleEnglish;
     private String titleJapanese;
@@ -22,6 +21,13 @@ public class Data {
     private String source;
     private Integer episodes;
     private String status;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "images_id", referencedColumnName = "id")
+    private Images images;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "titles_id", referencedColumnName = "id")
     private Titles titles;
 
     // Constructor por defecto

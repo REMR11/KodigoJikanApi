@@ -13,6 +13,8 @@ public class Titles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "titles_id", referencedColumnName = "id")
     private List<Title> titles;
 
     public Titles(List<TitleDTO> titles) {
