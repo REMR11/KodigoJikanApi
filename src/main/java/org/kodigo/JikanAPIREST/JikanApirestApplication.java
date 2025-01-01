@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class JikanApirestApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JikanApirestApplication.class, args);
+		SpringApplication.	run(JikanApirestApplication.class, args);
 	}
 
 }
