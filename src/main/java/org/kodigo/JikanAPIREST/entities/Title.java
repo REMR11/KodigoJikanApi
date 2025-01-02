@@ -1,7 +1,7 @@
 package org.kodigo.JikanAPIREST.entities;
 
 import jakarta.persistence.*;
-import org.kodigo.JikanAPIREST.DTO.TitleDTO;
+import org.kodigo.JikanAPIREST.dtos.TitleDTO;
 
 @Entity
 @Table(name="title")
@@ -11,6 +11,9 @@ public class Title {
     private long id;
     private String type;
     private String title;
+
+    public Title() {
+    }
 
     public Title(TitleDTO titleDTO) {
         this.type = titleDTO.type();

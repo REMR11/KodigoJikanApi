@@ -1,10 +1,7 @@
 package org.kodigo.JikanAPIREST.entities;
 
 import jakarta.persistence.*;
-import org.kodigo.JikanAPIREST.DTO.DataDTO;
-import org.kodigo.JikanAPIREST.DTO.TitleDTO;
-
-import java.util.List;
+import org.kodigo.JikanAPIREST.dtos.DataDTO;
 
 @Entity
 @Table(name = "data")
@@ -45,6 +42,20 @@ public class Data {
         this.episodes = dataDTO.episodes();
         this.status = dataDTO.status();
         this.titles = new Titles(dataDTO.titles());
+    }
+
+    public Data(Data data) {
+        this.id = data.getId();
+        this.url = data.getUrl();
+        this.title = data.getTitle();
+        this.titleEnglish = data.getTitleEnglish();
+        this.titleJapanese = data.getTitleJapanese();
+        this.type = data.getType();
+        this.source = data.getSource();
+        this.episodes = data.getEpisodes();
+        this.status = data.getStatus();
+        this.images = data.getImages();
+        this.titles = data.getTitles();
     }
 
     public long getId() {

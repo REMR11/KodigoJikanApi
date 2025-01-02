@@ -1,8 +1,7 @@
 package org.kodigo.JikanAPIREST.entities;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.persistence.*;
-import org.kodigo.JikanAPIREST.DTO.WebpDTO;
+import org.kodigo.JikanAPIREST.dtos.WebpDTO;
 
 @Entity
 @Table(name = "webp")

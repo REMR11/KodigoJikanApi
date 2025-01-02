@@ -1,8 +1,7 @@
 package org.kodigo.JikanAPIREST.entities;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.persistence.*;
-import org.kodigo.JikanAPIREST.DTO.JpgDTO;
+import org.kodigo.JikanAPIREST.dtos.JpgDTO;
 
 @Entity
 @Table(name="jpg")

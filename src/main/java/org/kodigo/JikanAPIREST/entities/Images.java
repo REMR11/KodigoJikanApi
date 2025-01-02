@@ -1,7 +1,7 @@
 package org.kodigo.JikanAPIREST.entities;
 
 import jakarta.persistence.*;
-import org.kodigo.JikanAPIREST.DTO.ImagesDTO;
+import org.kodigo.JikanAPIREST.dtos.ImagesDTO;
 
 
 @Entity

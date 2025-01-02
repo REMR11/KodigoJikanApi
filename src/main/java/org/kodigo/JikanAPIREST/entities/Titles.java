@@ -1,8 +1,7 @@
 package org.kodigo.JikanAPIREST.entities;
 
 import jakarta.persistence.*;
-import org.kodigo.JikanAPIREST.DTO.TitleDTO;
-import org.kodigo.JikanAPIREST.DTO.TitlesDTO;
+import org.kodigo.JikanAPIREST.dtos.TitleDTO;
 
 import java.util.List;
 
@@ -16,6 +15,8 @@ public class Titles {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "titles_id", referencedColumnName = "id")
     private List<Title> titles;
+
+    public Titles() {}
 
     public Titles(List<TitleDTO> titles) {
         this.titles = titles.stream().map(Title::new).toList();
