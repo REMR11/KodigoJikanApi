@@ -4,17 +4,18 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import org.kodigo.JikanAPIREST.DTO.DataDTO;
+import org.kodigo.JikanAPIREST.dtos.DataDTO;
 import org.kodigo.JikanAPIREST.entities.Data;
 import org.kodigo.JikanAPIREST.entities.Images;
 import org.kodigo.JikanAPIREST.entities.Titles;
 import org.kodigo.JikanAPIREST.repositories.IDataRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URLEncoder;
@@ -25,9 +26,11 @@ import java.util.Optional;
 
 @Service
 public class DataService {
-    private static final String JIKAN_API_BASE_URL = "https://api.jikan.moe/v4/";
+    @Value("${jikan.api.base-url}")
+    private String jikanApiBaseUrl;
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
+    @Autowired
     private final IDataRepository dataRepository;
 
     public DataService(IDataRepository iDataRepository) {
@@ -41,7 +44,7 @@ public class DataService {
 
     public Data getAndSaveAnimeById(Long malId) {
         try {
-            String url = JIKAN_API_BASE_URL + "/anime/" + malId;
+            String url = jikanApiBaseUrl + "/anime/" + malId;
             ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
 
             if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
@@ -62,7 +65,7 @@ public class DataService {
 
     public List<Data> searchAnime(String query) {
         try {
-            String url = JIKAN_API_BASE_URL + "/anime?q=" + URLEncoder.encode(query, StandardCharsets.UTF_8);
+            String url = jikanApiBaseUrl + "/anime?q=" + URLEncoder.encode(query, StandardCharsets.UTF_8);
             ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
 
             if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
@@ -84,9 +87,16 @@ public class DataService {
         }
     }
 
-    public List<Data> getAllAnime(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        return dataRepository.findAll(pageable).getContent();
+    public Optional<Data> getAnimeById(Long id) {
+        Optional<Data> data = dataRepository.findById(id);
+        if(data.isPresent()) {
+            return data;
+        }
+        throw new RuntimeException("Anime not found with id: " + id); // or return Optional.empty(); depending on your preference
+    }
+
+    public List<Data> getAllAnime() {
+        return dataRepository.findAll();
     }
 
     public Data updateAnime(Long id, DataDTO dataDTO) {
