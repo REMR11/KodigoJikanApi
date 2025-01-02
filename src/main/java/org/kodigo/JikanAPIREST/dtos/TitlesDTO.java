@@ -1,4 +1,4 @@
-package org.kodigo.JikanAPIREST.DTO;
+package org.kodigo.JikanAPIREST.dtos;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
