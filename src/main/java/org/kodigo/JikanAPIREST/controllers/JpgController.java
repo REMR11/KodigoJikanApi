@@ -10,17 +10,12 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/jpg")
+@RequestMapping("/api/animes/jpg")
 public class JpgController {
     private final JpgService jpgService;
 
     public JpgController(JpgService jpgService) {
         this.jpgService = jpgService;
-    }
-
-    @RequestMapping("/all")
-    public List<Jpg> getAllJpgs() {
-        return jpgService.getAllJpgs();
     }
 
     @GetMapping("/{id}")
