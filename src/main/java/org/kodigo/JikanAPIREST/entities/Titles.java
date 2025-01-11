@@ -45,4 +45,6 @@ public class Titles {
                 "\ttitles=" + titles +"\n"+
                 '}';
     }
+
+
 }
