@@ -1,12 +1,10 @@
 package org.kodigo.JikanAPIREST.controllers;
 
-import jakarta.persistence.SqlResultSetMapping;
 import org.kodigo.JikanAPIREST.dtos.JpgDTO;
 import org.kodigo.JikanAPIREST.entities.Jpg;
 import org.kodigo.JikanAPIREST.services.JpgService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController

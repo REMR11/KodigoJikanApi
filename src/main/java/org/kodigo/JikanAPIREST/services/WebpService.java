@@ -4,14 +4,16 @@ import org.kodigo.JikanAPIREST.dtos.WebpDTO;
 import org.kodigo.JikanAPIREST.entities.Webp;
 import org.kodigo.JikanAPIREST.repositories.IWebpRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class WebpService {
 
     @Autowired
-    private IWebpRepository webpRepository;
+    private final IWebpRepository webpRepository;
 
     public WebpService(IWebpRepository webpRepository) {
         this.webpRepository = webpRepository;
