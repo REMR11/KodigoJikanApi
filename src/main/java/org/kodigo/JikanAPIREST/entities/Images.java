@@ -2,6 +2,8 @@ package org.kodigo.JikanAPIREST.entities;
 
 import jakarta.persistence.*;
 import org.kodigo.JikanAPIREST.dtos.ImagesDTO;
+import org.kodigo.JikanAPIREST.dtos.JpgDTO;
+import org.kodigo.JikanAPIREST.dtos.WebpDTO;
 
 
 @Entity
@@ -45,7 +47,7 @@ public class Images {
         return jpg;
     }
 
-    public void setJpg(Jpg jpg) {
+    public void setJpg(JpgDTO jpg) {
         this.jpg = jpg;
     }
 
@@ -53,7 +55,7 @@ public class Images {
         return webp;
     }
 
-    public void setWebp(Webp webp) {
+    public void setWebp(WebpDTO webp) {
         this.webp = webp;
     }
 
